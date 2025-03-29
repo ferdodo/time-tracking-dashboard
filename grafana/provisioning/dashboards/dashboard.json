@@ -142,10 +142,16 @@
 			"fieldConfig": {
 				"defaults": {
 					"color": {
-						"mode": "palette-classic"
+						"fixedColor": "blue",
+						"mode": "fixed"
 					},
 					"custom": {
-						"fillOpacity": 86,
+						"axisBorderShow": false,
+						"axisCenteredZero": false,
+						"axisColorMode": "text",
+						"axisLabel": "",
+						"axisPlacement": "auto",
+						"fillOpacity": 73,
 						"gradientMode": "none",
 						"hideFrom": {
 							"legend": false,
@@ -153,9 +159,11 @@
 							"viz": false
 						},
 						"lineWidth": 1,
-						"stacking": {
-							"group": "A",
-							"mode": "none"
+						"scaleDistribution": {
+							"type": "linear"
+						},
+						"thresholdsStyle": {
+							"mode": "line"
 						}
 					},
 					"mappings": [],
@@ -163,7 +171,7 @@
 						"mode": "absolute",
 						"steps": [
 							{
-								"color": "green",
+								"color": "blue",
 								"value": null
 							}
 						]
@@ -179,18 +187,28 @@
 				"y": 4
 			},
 			"id": 4,
+			"interval": "1s",
+			"maxDataPoints": 10,
 			"options": {
-				"combine": false,
+				"barRadius": 0.15,
+				"barWidth": 0.92,
+				"fullHighlight": false,
+				"groupWidth": 0.7,
 				"legend": {
 					"calcs": [],
 					"displayMode": "list",
 					"placement": "bottom",
-					"showLegend": true
+					"showLegend": false
 				},
+				"orientation": "auto",
+				"showValue": "auto",
+				"stacking": "none",
 				"tooltip": {
 					"mode": "single",
 					"sort": "none"
-				}
+				},
+				"xTickLabelRotation": 0,
+				"xTickLabelSpacing": 0
 			},
 			"pluginVersion": "11.4.0",
 			"targets": [
@@ -239,19 +257,9 @@
 						},
 						"replaceFields": true
 					}
-				},
-				{
-					"id": "calculateField",
-					"options": {
-						"mode": "cumulativeFunctions",
-						"reduce": {
-							"reducer": "sum"
-						},
-						"replaceFields": true
-					}
 				}
 			],
-			"type": "histogram"
+			"type": "barchart"
 		}
 	],
 	"preload": false,
