@@ -188,7 +188,7 @@
 			},
 			"id": 4,
 			"interval": "1s",
-			"maxDataPoints": 10,
+			"maxDataPoints": 20,
 			"options": {
 				"barRadius": 0.15,
 				"barWidth": 0.92,
