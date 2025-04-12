@@ -44,13 +44,13 @@
 							}
 						]
 					},
-					"unit": "dtdurations"
+					"unit": "Hours"
 				},
 				"overrides": []
 			},
 			"gridPos": {
-				"h": 4,
-				"w": 24,
+				"h": 3,
+				"w": 12,
 				"x": 0,
 				"y": 0
 			},
@@ -67,7 +67,6 @@
 					"values": false
 				},
 				"showPercentChange": false,
-				"text": {},
 				"textMode": "auto",
 				"wideLayout": true
 			},
@@ -122,7 +121,157 @@
 				{
 					"id": "calculateField",
 					"options": {
+						"binary": {
+							"left": {
+								"matcher": {
+									"id": "byName",
+									"options": "Difference"
+								}
+							},
+							"operator": "/",
+							"right": {
+								"matcher": {
+									"id": "byName",
+									"options": "$secondinhours"
+								}
+							}
+						},
+						"mode": "binary",
+						"reduce": {
+							"reducer": "sum"
+						},
+						"unary": {
+							"fieldName": " ",
+							"operator": "abs"
+						}
+					}
+				},
+				{
+					"id": "calculateField",
+					"options": {
 						"alias": " ",
+						"cumulative": {
+							"field": "Difference / secondinhours",
+							"reducer": "sum"
+						},
+						"mode": "cumulativeFunctions",
+						"reduce": {
+							"reducer": "sum"
+						},
+						"replaceFields": true
+					}
+				}
+			],
+			"transparent": true,
+			"type": "stat"
+		},
+		{
+			"datasource": {
+				"type": "prometheus",
+				"uid": "PBFA97CFB590B2093"
+			},
+			"fieldConfig": {
+				"defaults": {
+					"color": {
+						"fixedColor": "blue",
+						"mode": "fixed"
+					},
+					"decimals": 2,
+					"fieldMinMax": false,
+					"mappings": [],
+					"thresholds": {
+						"mode": "absolute",
+						"steps": [
+							{
+								"color": "green",
+								"value": null
+							}
+						]
+					},
+					"unit": "dtdurations"
+				},
+				"overrides": []
+			},
+			"gridPos": {
+				"h": 3,
+				"w": 12,
+				"x": 12,
+				"y": 0
+			},
+			"id": 8,
+			"options": {
+				"colorMode": "value",
+				"graphMode": "none",
+				"justifyMode": "center",
+				"orientation": "auto",
+				"percentChangeColorMode": "standard",
+				"reduceOptions": {
+					"calcs": ["lastNotNull"],
+					"fields": "",
+					"values": false
+				},
+				"showPercentChange": false,
+				"textMode": "auto",
+				"wideLayout": true
+			},
+			"pluginVersion": "11.4.0",
+			"targets": [
+				{
+					"datasource": {
+						"type": "prometheus",
+						"uid": "PBFA97CFB590B2093"
+					},
+					"disableTextWrap": false,
+					"editorMode": "code",
+					"exemplar": false,
+					"expr": "timestamp(up)",
+					"format": "time_series",
+					"fullMetaSearch": false,
+					"includeNullMetadata": true,
+					"instant": false,
+					"interval": "60s",
+					"legendFormat": "__auto",
+					"range": true,
+					"refId": "A",
+					"useBackend": false
+				},
+				{
+					"datasource": {
+						"type": "prometheus",
+						"uid": "PBFA97CFB590B2093"
+					},
+					"editorMode": "code",
+					"expr": " timestamp(up offset -$__interval)",
+					"hide": false,
+					"instant": false,
+					"interval": "60s",
+					"legendFormat": "__auto",
+					"range": true,
+					"refId": "B"
+				}
+			],
+			"title": "",
+			"transformations": [
+				{
+					"id": "calculateField",
+					"options": {
+						"alias": "",
+						"mode": "reduceRow",
+						"reduce": {
+							"include": [],
+							"reducer": "diff"
+						},
+						"replaceFields": false
+					}
+				},
+				{
+					"id": "calculateField",
+					"options": {
+						"alias": " ",
+						"cumulative": {
+							"field": "Difference",
+							"reducer": "sum"
+						},
 						"mode": "cumulativeFunctions",
 						"reduce": {
 							"reducer": "sum"
@@ -184,11 +333,11 @@
 				"h": 6,
 				"w": 24,
 				"x": 0,
-				"y": 4
+				"y": 3
 			},
 			"id": 4,
 			"interval": "1s",
-			"maxDataPoints": 20,
+			"maxDataPoints": 40,
 			"options": {
 				"barRadius": 0.15,
 				"barWidth": 0.92,
@@ -260,13 +409,122 @@
 				}
 			],
 			"type": "barchart"
+		},
+		{
+			"datasource": {
+				"type": "prometheus",
+				"uid": "PBFA97CFB590B2093"
+			},
+			"fieldConfig": {
+				"defaults": {
+					"color": {
+						"mode": "palette-classic"
+					},
+					"custom": {
+						"axisBorderShow": false,
+						"axisCenteredZero": false,
+						"axisColorMode": "text",
+						"axisLabel": "",
+						"axisPlacement": "hidden",
+						"barAlignment": 0,
+						"barWidthFactor": 0.6,
+						"drawStyle": "line",
+						"fillOpacity": 0,
+						"gradientMode": "none",
+						"hideFrom": {
+							"legend": false,
+							"tooltip": false,
+							"viz": false
+						},
+						"insertNulls": false,
+						"lineInterpolation": "linear",
+						"lineWidth": 1,
+						"pointSize": 5,
+						"scaleDistribution": {
+							"type": "linear"
+						},
+						"showPoints": "auto",
+						"spanNulls": false,
+						"stacking": {
+							"group": "A",
+							"mode": "none"
+						},
+						"thresholdsStyle": {
+							"mode": "off"
+						}
+					},
+					"mappings": [],
+					"thresholds": {
+						"mode": "absolute",
+						"steps": [
+							{
+								"color": "green",
+								"value": null
+							},
+							{
+								"color": "red",
+								"value": 80
+							}
+						]
+					}
+				},
+				"overrides": []
+			},
+			"gridPos": {
+				"h": 4,
+				"w": 24,
+				"x": 0,
+				"y": 9
+			},
+			"id": 7,
+			"options": {
+				"legend": {
+					"calcs": [],
+					"displayMode": "list",
+					"placement": "bottom",
+					"showLegend": false
+				},
+				"tooltip": {
+					"mode": "multi",
+					"sort": "none"
+				}
+			},
+			"pluginVersion": "11.4.0",
+			"targets": [
+				{
+					"disableTextWrap": false,
+					"editorMode": "builder",
+					"expr": "up",
+					"fullMetaSearch": false,
+					"includeNullMetadata": true,
+					"legendFormat": "__auto",
+					"range": true,
+					"refId": "A",
+					"useBackend": false
+				}
+			],
+			"title": "",
+			"transparent": true,
+			"type": "timeseries"
 		}
 	],
 	"preload": false,
 	"schemaVersion": 40,
 	"tags": ["example"],
 	"templating": {
-		"list": []
+		"list": [
+			{
+				"current": {
+					"text": "3600",
+					"value": "3600"
+				},
+				"hide": 2,
+				"name": "secondinhours",
+				"query": "3600",
+				"skipUrlSync": true,
+				"type": "constant"
+			}
+		]
 	},
 	"timepicker": {},
 	"timezone": "browser",
