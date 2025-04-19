@@ -55,6 +55,7 @@
 				"y": 0
 			},
 			"id": 1,
+			"maxDataPoints": 20000,
 			"options": {
 				"colorMode": "value",
 				"graphMode": "none",
@@ -121,11 +122,27 @@
 				{
 					"id": "calculateField",
 					"options": {
+						"alias": "cumul",
+						"cumulative": {
+							"field": "Difference",
+							"reducer": "sum"
+						},
+						"mode": "cumulativeFunctions",
+						"reduce": {
+							"reducer": "sum"
+						},
+						"replaceFields": true
+					}
+				},
+				{
+					"id": "calculateField",
+					"options": {
+						"alias": " ",
 						"binary": {
 							"left": {
 								"matcher": {
 									"id": "byName",
-									"options": "Difference"
+									"options": "cumul"
 								}
 							},
 							"operator": "/",
@@ -140,25 +157,11 @@
 						"reduce": {
 							"reducer": "sum"
 						},
+						"replaceFields": true,
 						"unary": {
 							"fieldName": " ",
 							"operator": "abs"
 						}
-					}
-				},
-				{
-					"id": "calculateField",
-					"options": {
-						"alias": " ",
-						"cumulative": {
-							"field": "Difference / secondinhours",
-							"reducer": "sum"
-						},
-						"mode": "cumulativeFunctions",
-						"reduce": {
-							"reducer": "sum"
-						},
-						"replaceFields": true
 					}
 				}
 			],
@@ -199,6 +202,7 @@
 				"y": 0
 			},
 			"id": 8,
+			"maxDataPoints": 20000,
 			"options": {
 				"colorMode": "value",
 				"graphMode": "none",
