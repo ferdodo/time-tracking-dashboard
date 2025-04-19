@@ -1,6 +1,6 @@
 services:
   prometheus:
-    image: prom/prometheus
+    build: prometheus
     restart: always
 
   grafana:
@@ -12,3 +12,6 @@ services:
       - GF_AUTH_DISABLE_LOGIN_FORM=true
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Viewer
     restart: always
+
+  exporter:
+    build: exporter

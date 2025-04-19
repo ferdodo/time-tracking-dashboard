@@ -49,7 +49,7 @@
 				"overrides": []
 			},
 			"gridPos": {
-				"h": 3,
+				"h": 8,
 				"w": 12,
 				"x": 0,
 				"y": 0
@@ -170,53 +170,122 @@
 		},
 		{
 			"datasource": {
+				"uid": "PBFA97CFB590B2093"
+			},
+			"fieldConfig": {
+				"defaults": {
+					"color": {
+						"mode": "palette-classic"
+					},
+					"custom": {
+						"hideFrom": {
+							"legend": false,
+							"tooltip": false,
+							"viz": false
+						}
+					},
+					"mappings": [],
+					"unit": "decgbytes"
+				},
+				"overrides": []
+			},
+			"gridPos": {
+				"h": 8,
+				"w": 6,
+				"x": 12,
+				"y": 0
+			},
+			"id": 11,
+			"options": {
+				"displayLabels": ["value", "name"],
+				"legend": {
+					"displayMode": "list",
+					"placement": "bottom",
+					"showLegend": false
+				},
+				"pieType": "pie",
+				"reduceOptions": {
+					"calcs": ["lastNotNull"],
+					"fields": "",
+					"values": false
+				},
+				"tooltip": {
+					"mode": "single",
+					"sort": "none"
+				}
+			},
+			"pluginVersion": "11.4.0",
+			"targets": [
+				{
+					"editorMode": "code",
+					"expr": "ttd_disk_free_gb{}",
+					"legendFormat": "Free",
+					"range": true,
+					"refId": "A"
+				},
+				{
+					"datasource": {
+						"type": "prometheus",
+						"uid": "PBFA97CFB590B2093"
+					},
+					"editorMode": "code",
+					"expr": "ttd_disk_total_gb{}",
+					"hide": false,
+					"instant": false,
+					"legendFormat": "Used",
+					"range": true,
+					"refId": "B"
+				}
+			],
+			"title": "Disk",
+			"type": "piechart"
+		},
+		{
+			"datasource": {
 				"type": "prometheus",
 				"uid": "PBFA97CFB590B2093"
 			},
 			"fieldConfig": {
 				"defaults": {
 					"color": {
-						"fixedColor": "blue",
-						"mode": "fixed"
+						"mode": "palette-classic"
 					},
-					"decimals": 2,
-					"fieldMinMax": false,
+					"custom": {
+						"hideFrom": {
+							"legend": false,
+							"tooltip": false,
+							"viz": false
+						}
+					},
 					"mappings": [],
-					"thresholds": {
-						"mode": "absolute",
-						"steps": [
-							{
-								"color": "green",
-								"value": null
-							}
-						]
-					},
-					"unit": "dtdurations"
+					"unit": "decmbytes"
 				},
 				"overrides": []
 			},
 			"gridPos": {
-				"h": 3,
-				"w": 12,
-				"x": 12,
+				"h": 8,
+				"w": 6,
+				"x": 18,
 				"y": 0
 			},
-			"id": 8,
-			"maxDataPoints": 20000,
+			"id": 12,
 			"options": {
-				"colorMode": "value",
-				"graphMode": "none",
-				"justifyMode": "center",
-				"orientation": "auto",
-				"percentChangeColorMode": "standard",
+				"displayLabels": ["value", "name"],
+				"legend": {
+					"displayMode": "list",
+					"placement": "bottom",
+					"showLegend": false
+				},
+				"pieType": "pie",
 				"reduceOptions": {
 					"calcs": ["lastNotNull"],
 					"fields": "",
 					"values": false
 				},
-				"showPercentChange": false,
-				"textMode": "auto",
-				"wideLayout": true
+				"tooltip": {
+					"mode": "single",
+					"sort": "none"
+				}
 			},
 			"pluginVersion": "11.4.0",
 			"targets": [
@@ -225,67 +294,24 @@
 						"type": "prometheus",
 						"uid": "PBFA97CFB590B2093"
 					},
-					"disableTextWrap": false,
 					"editorMode": "code",
-					"exemplar": false,
-					"expr": "timestamp(up)",
-					"format": "time_series",
-					"fullMetaSearch": false,
-					"includeNullMetadata": true,
-					"instant": false,
-					"interval": "60s",
-					"legendFormat": "__auto",
-					"range": true,
-					"refId": "A",
-					"useBackend": false
-				},
-				{
-					"datasource": {
-						"type": "prometheus",
-						"uid": "PBFA97CFB590B2093"
-					},
-					"editorMode": "code",
-					"expr": " timestamp(up offset -$__interval)",
+					"expr": "ttd_memory_free_mb{}",
 					"hide": false,
 					"instant": false,
-					"interval": "60s",
-					"legendFormat": "__auto",
+					"legendFormat": "Free",
 					"range": true,
 					"refId": "B"
-				}
-			],
-			"title": "",
-			"transformations": [
-				{
-					"id": "calculateField",
-					"options": {
-						"alias": "",
-						"mode": "reduceRow",
-						"reduce": {
-							"include": [],
-							"reducer": "diff"
-						},
-						"replaceFields": false
-					}
 				},
 				{
-					"id": "calculateField",
-					"options": {
-						"alias": " ",
-						"cumulative": {
-							"field": "Difference",
-							"reducer": "sum"
-						},
-						"mode": "cumulativeFunctions",
-						"reduce": {
-							"reducer": "sum"
-						},
-						"replaceFields": true
-					}
+					"editorMode": "code",
+					"expr": "ttd_memory_used_mb{}",
+					"legendFormat": "Used",
+					"range": true,
+					"refId": "A"
 				}
 			],
-			"transparent": true,
-			"type": "stat"
+			"title": "Memory",
+			"type": "piechart"
 		},
 		{
 			"datasource": {
@@ -337,7 +363,7 @@
 				"h": 6,
 				"w": 24,
 				"x": 0,
-				"y": 3
+				"y": 8
 			},
 			"id": 4,
 			"interval": "1s",
@@ -429,19 +455,21 @@
 						"axisCenteredZero": false,
 						"axisColorMode": "text",
 						"axisLabel": "",
-						"axisPlacement": "hidden",
+						"axisPlacement": "auto",
+						"axisSoftMax": 100,
+						"axisSoftMin": 0,
 						"barAlignment": 0,
 						"barWidthFactor": 0.6,
 						"drawStyle": "line",
-						"fillOpacity": 0,
-						"gradientMode": "none",
+						"fillOpacity": 37,
+						"gradientMode": "opacity",
 						"hideFrom": {
 							"legend": false,
 							"tooltip": false,
 							"viz": false
 						},
 						"insertNulls": false,
-						"lineInterpolation": "linear",
+						"lineInterpolation": "smooth",
 						"lineWidth": 1,
 						"pointSize": 5,
 						"scaleDistribution": {
@@ -475,12 +503,12 @@
 				"overrides": []
 			},
 			"gridPos": {
-				"h": 4,
-				"w": 24,
+				"h": 8,
+				"w": 12,
 				"x": 0,
-				"y": 9
+				"y": 14
 			},
-			"id": 7,
+			"id": 9,
 			"options": {
 				"legend": {
 					"calcs": [],
@@ -489,26 +517,115 @@
 					"showLegend": false
 				},
 				"tooltip": {
-					"mode": "multi",
+					"mode": "single",
 					"sort": "none"
 				}
 			},
 			"pluginVersion": "11.4.0",
 			"targets": [
 				{
-					"disableTextWrap": false,
-					"editorMode": "builder",
-					"expr": "up",
-					"fullMetaSearch": false,
-					"includeNullMetadata": true,
+					"editorMode": "code",
+					"expr": "ttd_cpu_current_load_percent",
 					"legendFormat": "__auto",
 					"range": true,
-					"refId": "A",
-					"useBackend": false
+					"refId": "A"
 				}
 			],
-			"title": "",
-			"transparent": true,
+			"title": "CPU",
+			"type": "timeseries"
+		},
+		{
+			"datasource": {
+				"type": "prometheus",
+				"uid": "PBFA97CFB590B2093"
+			},
+			"fieldConfig": {
+				"defaults": {
+					"color": {
+						"mode": "palette-classic"
+					},
+					"custom": {
+						"axisBorderShow": false,
+						"axisCenteredZero": false,
+						"axisColorMode": "text",
+						"axisLabel": "",
+						"axisPlacement": "auto",
+						"axisSoftMax": 100,
+						"axisSoftMin": 0,
+						"barAlignment": 0,
+						"barWidthFactor": 0.6,
+						"drawStyle": "line",
+						"fillOpacity": 51,
+						"gradientMode": "opacity",
+						"hideFrom": {
+							"legend": false,
+							"tooltip": false,
+							"viz": false
+						},
+						"insertNulls": false,
+						"lineInterpolation": "smooth",
+						"lineWidth": 1,
+						"pointSize": 5,
+						"scaleDistribution": {
+							"type": "linear"
+						},
+						"showPoints": "auto",
+						"spanNulls": false,
+						"stacking": {
+							"group": "A",
+							"mode": "none"
+						},
+						"thresholdsStyle": {
+							"mode": "off"
+						}
+					},
+					"mappings": [],
+					"thresholds": {
+						"mode": "absolute",
+						"steps": [
+							{
+								"color": "green",
+								"value": null
+							},
+							{
+								"color": "red",
+								"value": 80
+							}
+						]
+					}
+				},
+				"overrides": []
+			},
+			"gridPos": {
+				"h": 8,
+				"w": 12,
+				"x": 12,
+				"y": 14
+			},
+			"id": 10,
+			"options": {
+				"legend": {
+					"calcs": [],
+					"displayMode": "list",
+					"placement": "bottom",
+					"showLegend": false
+				},
+				"tooltip": {
+					"mode": "single",
+					"sort": "none"
+				}
+			},
+			"pluginVersion": "11.4.0",
+			"targets": [
+				{
+					"editorMode": "code",
+					"expr": "ttd_memory_used_percent{}",
+					"legendFormat": "__auto",
+					"range": true,
+					"refId": "A"
+				}
+			],
+			"title": "Mem",
 			"type": "timeseries"
 		}
 	],
