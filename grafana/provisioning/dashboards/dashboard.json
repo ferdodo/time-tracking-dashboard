@@ -39,8 +39,7 @@
 						"mode": "absolute",
 						"steps": [
 							{
-								"color": "green",
-								"value": null
+								"color": "green"
 							}
 						]
 					},
@@ -71,7 +70,7 @@
 				"textMode": "auto",
 				"wideLayout": true
 			},
-			"pluginVersion": "11.4.0",
+			"pluginVersion": "11.6.0",
 			"targets": [
 				{
 					"datasource": {
@@ -210,15 +209,19 @@
 					"values": false
 				},
 				"tooltip": {
+					"hideZeros": false,
 					"mode": "single",
 					"sort": "none"
 				}
 			},
-			"pluginVersion": "11.4.0",
+			"pluginVersion": "11.6.0",
 			"targets": [
 				{
 					"editorMode": "code",
+					"exemplar": false,
 					"expr": "ttd_disk_free_gb{}",
+					"hide": false,
+					"instant": false,
 					"legendFormat": "Free",
 					"range": true,
 					"refId": "A"
@@ -229,7 +232,8 @@
 						"uid": "PBFA97CFB590B2093"
 					},
 					"editorMode": "code",
-					"expr": "ttd_disk_total_gb{}",
+					"exemplar": false,
+					"expr": "ttd_disk_used_gb{}",
 					"hide": false,
 					"instant": false,
 					"legendFormat": "Used",
@@ -283,11 +287,12 @@
 					"values": false
 				},
 				"tooltip": {
+					"hideZeros": false,
 					"mode": "single",
 					"sort": "none"
 				}
 			},
-			"pluginVersion": "11.4.0",
+			"pluginVersion": "11.6.0",
 			"targets": [
 				{
 					"datasource": {
@@ -350,8 +355,7 @@
 						"mode": "absolute",
 						"steps": [
 							{
-								"color": "blue",
-								"value": null
+								"color": "blue"
 							}
 						]
 					},
@@ -383,13 +387,14 @@
 				"showValue": "auto",
 				"stacking": "none",
 				"tooltip": {
+					"hideZeros": false,
 					"mode": "single",
 					"sort": "none"
 				},
 				"xTickLabelRotation": 0,
 				"xTickLabelSpacing": 0
 			},
-			"pluginVersion": "11.4.0",
+			"pluginVersion": "11.6.0",
 			"targets": [
 				{
 					"datasource": {
@@ -490,8 +495,7 @@
 						"mode": "absolute",
 						"steps": [
 							{
-								"color": "green",
-								"value": null
+								"color": "green"
 							},
 							{
 								"color": "red",
@@ -517,11 +521,12 @@
 					"showLegend": false
 				},
 				"tooltip": {
+					"hideZeros": false,
 					"mode": "single",
 					"sort": "none"
 				}
 			},
-			"pluginVersion": "11.4.0",
+			"pluginVersion": "11.6.0",
 			"targets": [
 				{
 					"editorMode": "code",
@@ -584,8 +589,7 @@
 						"mode": "absolute",
 						"steps": [
 							{
-								"color": "green",
-								"value": null
+								"color": "green"
 							},
 							{
 								"color": "red",
@@ -611,11 +615,12 @@
 					"showLegend": false
 				},
 				"tooltip": {
+					"hideZeros": false,
 					"mode": "single",
 					"sort": "none"
 				}
 			},
-			"pluginVersion": "11.4.0",
+			"pluginVersion": "11.6.0",
 			"targets": [
 				{
 					"editorMode": "code",
@@ -630,7 +635,7 @@
 		}
 	],
 	"preload": false,
-	"schemaVersion": 40,
+	"schemaVersion": 41,
 	"tags": ["example"],
 	"templating": {
 		"list": [
@@ -651,6 +656,5 @@
 	"timezone": "browser",
 	"title": "Uptime",
 	"uid": "uptime-dashboard",
-	"version": 1,
-	"weekStart": ""
+	"version": 1
 }
